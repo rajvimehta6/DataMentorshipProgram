@@ -1,0 +1,77 @@
+# DataMentorshipProgram
+Goal: This document shares step by step guide to dealing with missing values in Python. If you are interested in reviewing how to download Python documentation, please refer to this link. 
+
+Please note that this document does not talk about analyzing your data.
+
+Data Source: For this session, we will be using Global Land Temperature By Country
+
+Please note - Click on the link above and click on download. The file is extremely large and cannot be saved in google Sheets. 
+Data Dictionary: 
+Date: starts in 1750 for average land temperature and 1850 for max and min land temperatures and global ocean and land temperatures
+  LandAverageTemperature: global average land temperature in celsius
+  LandAverageTemperatureUncertainty: the 95% confidence interval around the average
+  LandMaxTemperature: global average maximum land temperature in celsius
+  LandMaxTemperatureUncertainty: the 95% confidence interval around the maximum land temperature
+  LandMinTemperature: global average minimum land temperature in celsius
+  LandMinTemperatureUncertainty: the 95% confidence interval around the minimum land temperature
+  LandAndOceanAverageTemperature: global average land and ocean temperature in celsius
+  LandAndOceanAverageTemperatureUncertainty: the 95% confidence interval around the global average land and ocean temperature
+ 
+Before starting: Make sure you have 
+Your Jupyter Notebook is open 
+Your dataset was downloaded in excel format 
+
+Starting Jupyter Kernel (a Jupyter kernel is a place where your code runs) 
+ 
+We won’t go over the EDA Phase in this document. You can refer to this document to conduct basic EDA. 
+Irregularities are of different types of data.
+Missing Values
+Incorrect Format
+Incorrect Headers
+Anomalies/Outliers
+ 
+Dealing with Irregular Data
+ 
+
+
+Once I read the file, and reformat the date (dt) column, I see very clearly that there are a bunch of NaN values and blank or weird country names. 
+
+I also did a quick check to make sure my columns are formatted correctly. I see that the count of Average Temperature and Average Temperature uncertainty is not equal - which tells me that there are missing values. 
+
+
+
+To check further for missing values 
+
+
+
+As we can see two columns contain missing values. Let’s see how to handle the missing values. We can handle missing values by dropping the missing records or by imputing the values.
+
+If we were to drop the missing values, we would use the following syntax
+
+
+
+
+
+However, this will cause issues in our analysis. We know that average temperature is an important aspect of our analysis to figure out if the climate change threat is real. 
+
+A different way to deal with the missing value is to fill in the blanks with the MODE of the data. 
+
+
+
+Dealing with Subsets
+
+Upon further observation, I see that the data contains information from the years 1784 to 2013. For the purpose of this analysis, I am only interested in data from 1980 to date. 
+
+
+
+ 
+Now that we have a relatively smaller dataset, let us try to visualize the disparity in the data. Copy paste the following code. 
+pivot = data1.pivot_table(index=['Country'],values=['AverageTemperature','AverageTemperatureUncertainty'],aggfunc='mean').sort_values(by=['AverageTemperature','AverageTemperatureUncertainty'],ascending=False)
+fig,ax=plt.subplots(figsize=(10,20))
+sns.heatmap(pivot,cmap="Blues",ax=ax)
+plt.show()
+Jupyter GroupBy Function
+GroupBy is a powerful function that will help you visualize the data in a manner that is easier for your work. This code combines the GroupBy and the Sort function.
+
+Lastly, let us create a simple line chart to understand the trend of the increase in temperature. 
+

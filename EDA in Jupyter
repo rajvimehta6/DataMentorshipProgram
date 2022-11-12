@@ -1,0 +1,137 @@
+
+
+Goal: This document shares step by step guide to conducting exploratory data analysis in Python. If you are interested in reviewing how to download Python documentation, please refer to this link. 
+
+Data Source: For this session, we will be using US County Coronavirus Data set 
+Data Dictionary: This dataset captures coronavirus cases from January 2020 to April 2020 in US counties 
+ 
+Column Name
+Data Type
+Date
+Date
+County
+String
+State
+String
+Fips
+Integer
+Cases 
+Integer
+Deaths
+Integer
+
+ 
+Before starting: Make sure you have 
+Your Jupyter Notebook is open 
+Your dataset downloaded in excel format 
+
+Starting Jupyter Kernel (a Jupyter kernel is a place where your code runs) 
+
+
+
+Click on Python 3 (ipykernel) You should see the following screen
+
+
+
+
+Exploratory Data Analysis in Jupyter 
+
+Exploratory Data Analysis or EDA is used to take insights from the data. Data Scientists and Analysts try to find different patterns, relations, and anomalies in the data using statistical graphs and other visualization techniques. The following things are part of EDA:
+Get maximum insights from a data set
+Uncover underlying structure
+Extract important variables from the dataset
+Detect outliers and anomalies(if any)
+Test underlying assumptions
+Determine the optimal factor settings
+Why EDA is important?
+The main purpose of EDA is to detect any errors, and outliers as well as to understand different patterns in the data. It allows Analysts to understand the data better before making any assumptions. The outcomes of EDA help businesses to know their customers, expand their business and take decisions accordingly.
+ 
+Exploratory Data Analysis Process in Jupyter
+ 
+Import Libraries and load the dataset 
+
+ 
+Things to keep in mind while reading the dataset 
+Make sure the data that you are planning to work with is saved and downloaded to your desktop. The pd.read_csv code works when the exact file is saved on your computer. 
+Common errors here
+If your file format is excel, use pd.read_excel . Double-check your file format
+Make sure the file name in the code matches the exact file name. Jupyter is very specific about caps lock and the specific use of ‘punctuations’ 
+ 
+ 
+Check your data by data.info()
+
+
+
+We see that the date is an Object and fips (pincode) is a float64. We do not like this for our analysis. Jupyter needs to be specifically told that a column is a Date. 
+
+
+
+Next, FIPS is a federal code - which we won’t be using for our analysis. However, if you are curious and you wanted to change the data type of a specific column, you can simply do the following 
+
+
+
+However, since we won’t be dealing with the FIPS column in this analysis, let’s drop it. 
+
+
+
+Okay, now that we have all our columns in the right data type, let's move on to the first step of EDA
+
+
+Next step in the EDA process is to get quick insights about the dataset. We want to know how large the dataset is, what is the mean, and mean, mode, and whether are there any outliers
+
+
+
+This means that I have ~30,000 rows and 5 columns. 
+
+A common error here - is if you type data.shape() you will get the following error. This just means that you do not need the ()
+
+
+Next step, we want to know what the overall statistics of the data look like
+
+
+
+A simple syntax, but a powerful syntax. One thing to note (unless you already noticed this), Jupyter will only provide statistics on the columns that it identifies as “numbers”. 
+
+Question for you: Can you identify three things from this output that will help you make a further analytical decision? 
+
+Think about the time period this dataset is set in, and think about what the high-level story this output tells you. 
+
+How do you identify missing values here?
+
+Look at the Count row. The number of cases and deaths is consistent here. So, now we know that this dataset does not have any missing values. 
+
+Okay, moving on to building some graphs and plots
+
+Let us first start with mapping the rise of cases from January 2020 to April 2020 with the data that we have
+
+
+
+What do we notice?
+
+Yes, the cases are rising, however, the X-axis is not super clear. We can make this easier by separating the month from the dates. 
+
+
+
+Common errors made here 
+Make sure to change ALL the syntax. Check and then recheck your code. 
+The graph shows that the number of cases drop in April (month 4) because the dataset is limited to the first four months of 2020. 
+
+Next, let us look by the Cases By Day
+
+
+
+Common error here - make sure to update the syntax in the highlighted column, to match with the naming convention in the previous line. It is very easy to miss. 
+
+What does this graph tell me? Cases increase as the days pass by. 
+Note that we care to group the data by Days. This means all the 12th of the four months will be grouped together. 
+
+You can see what the GroupBy dataset looks like below
+
+
+
+
+
+
+Great!! Now you know what kind of dataset you are dealing with. This is a SIMPLE EDA. In the real world, the dataset will not be as clean. 
+
+We will talk about how to deal with potential missing values in the next document. 

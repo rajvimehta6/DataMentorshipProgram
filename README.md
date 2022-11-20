@@ -8,3 +8,5 @@ If you have any questions about this repository or the mentorship program, pleas
 
 November 2022
 The first two projects are simple EDA in Jupyter and Dealing with Irregular data
+
+We recommend starting to work with the EDA file/code first and then moving on to the second file/code - dealing with irregular data
